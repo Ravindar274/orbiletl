@@ -1,0 +1,15 @@
+services:
+  postgres:
+    image: postgres:15-alpine
+    container_name: orbitetl-postgres
+    environment:
+      POSTGRES_DB: orbitetl
+      POSTGRES_USER: orbitetl_user
+      POSTGRES_PASSWORD: orbitetl_pass
+    ports:
+      - "5432:5432"
+    volumes:
+      - orbitetl_postgres_data:/var/lib/postgresql/data
+
+volumes:
+  orbitetl_postgres_data:

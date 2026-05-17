@@ -10,6 +10,25 @@ services:
       - "5432:5432"
     volumes:
       - orbitetl_postgres_data:/var/lib/postgresql/data
+    healthcheck:
+      test: ["CMD-SHELL", "pg_isready -U orbitetl_user -d orbitetl"]
+      interval: 10s
+      timeout: 5s
+      retries: 5
+
+  workflow-service:
+    image: orbitetl/workflow-service:1.0.0
+    container_name: orbitetl-workflow-service
+    ports:
+      - "8081:8081"
+    environment:
+      SPRING_DATASOURCE_URL: jdbc:postgresql://postgres:5432/orbitetl
+      SPRING_DATASOURCE_USERNAME: orbitetl_user
+      SPRING_DATASOURCE_PASSWORD: orbitetl_pass
+      SPRING_JPA_HIBERNATE_DDL_AUTO: update
+    depends_on:
+      postgres:
+        condition: service_healthy
 
 volumes:
   orbitetl_postgres_data:

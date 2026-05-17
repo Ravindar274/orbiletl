@@ -366,3 +366,13 @@ test(service-name): description     — tests
 - [ ] Jenkins CI/CD
 - [ ] Prometheus + Grafana
 - [ ] ELK Stack
+
+### workflow-service
+- [x] Project scaffolded
+- [x] JPA entities (Connection, TransformationRule, Workflow, WorkflowTransformationRule, JobExecution)
+- [x] Connection API (CRUD)
+- [x] TransformationRule API (CRUD)
+- [x] Workflow API (CRUD)
+- [x] JobExecution API (read-only)
+- [ ] Dockerize
+- [ ] Helm chart
